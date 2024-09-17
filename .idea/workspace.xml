@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b1fbccfd-e19c-4d7e-a2c7-84cc6df79b0e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dndCharacterMaker.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/360_F_79202670_Cc0MVa1DSyQfEy5weTArcnp0HAPXDCyF.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Legolas_character_image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModelArcitecture" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Oin_character_image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SEVESBRG.TTF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dnd_character_creator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modelTest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seven-swordsmen-bb/font info.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/Stable-diffusion/Put Stable Diffusion checkpoints here.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/dark_fantasy_surreal_paintings_prompts.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/darkfantasy_illustration_v1.safetensors" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/darkfantasy_illustration_v1_000001000.safetensors" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/darkfantasy_illustration_v1_000001500.safetensors" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/darkfantasy_illustration_v1_000002000.safetensors" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/darkfantasy_illustration_v1_000002500.safetensors" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/darkfantasy_illustration_v2.safetensors" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/darkfantasy_illustration_v2_000001000.safetensors" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/darkfantasy_illustration_v2_000001500.safetensors" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/darkfantasy_illustration_v2_000002000.safetensors" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/darkfantasy_illustration_v2_000002500.safetensors" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/darkfantasy_illustration_v2_000003000.safetensors" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/darkfantasy_illustration_v2_000003500.safetensors" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/dune_by_Frank_Herbert_iconic_scenes_prompts.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/dune_iconic_scenes_but_its_a_dark_fantasy_movie_prompts.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/1dS4MvF4mPI3rbKWSM62d_0e220c6517c341849963bff5f35edff0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/2T_-kvSXtu-4Li0pWY3Nl_bc3aa5b30c4542f799f8a58d38be0dba.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/2xCw-zPPk71ndjTkvu7dU_e34a3bc80c114f42bbb29c64dbfbb772.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/8ht962CAhe4fkfG-DQgeD_33241f37aa5b43bfaaaf4a57601bbb3a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/DFheqB3i2G3WObmwPAq8c_ababc40900c242b997510ede2cb66d12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/HC_TfGzBD6EX40oQDtRAW_0f40855216f143d0b8cde3d245e11192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/IMD0k2UX7umCGngkiMD5N_7afbee01a2e8446d9a6c821d5bc6aef7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/JtkHncG8pVdSKQjcfjbGC_3737cd7edf9e447da04cc90db296db87.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/N8_cHekfnN717SrtwThRK_54dff2bae4e144eca089400dd6ec8cd3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/b334dOfJelPS-MNwbUMBE_9f072552b8a2464c952a4d0de3c70458.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/cCrzqqFuCyihqX-tSqGj6_7e2c6a39a585461ca9a6ef3b61f75ace.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/hbvE6DtKhcEOp4xhIBeW5_f032eed4e256477d9357be927df9496c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/uAxl52KCQhApgLvjqVA9g_36627ece53924ba2be449bec98b45c89.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/uf563XDB6mRrBsSmSpwUw_2d9bfe9b04ae4c6aade643173deabd1a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/ufYAsd2safzM4ib90vv17_117e5935150e4de98aca58166d241c0e.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/up5xpjqMOMfG8iVMTyPGo_61aedcc68e5b4c8ebacfc64ac8f1b135.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/images/ymvhu0GezE_oXB4R-IHVg_3506f443319f412b8fdbc4d3c37beeb4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion/dark-fantasy-illustration-flux/surreal_fantasy_portraits_prompts.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/modules/sd_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/modules/sd_models.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2ltQAKboFP1G8wmFBqKz7StyEyn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.dnd_character_creator.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.modelTest.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/StableDiffusion/stable-diffusion-webui/models/StableDiffusion" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="dndCharacterMaker" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-09665e90c3a7-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.15026.15" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b1fbccfd-e19c-4d7e-a2c7-84cc6df79b0e" name="Changes" comment="" />
+      <created>1725996749214</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1725996749214</updated>
+      <workItem from="1725996751287" duration="8407000" />
+      <workItem from="1726353291796" duration="659000" />
+      <workItem from="1726511642906" duration="4795000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/dndCharacterMaker$dnd_character_creator.coverage" NAME="dnd_character_creator Coverage Results" MODIFIED="1726584270322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/dndCharacterMaker$modelTest.coverage" NAME="modelTest Coverage Results" MODIFIED="1726513001722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/dndCharacterMaker$main.coverage" NAME="main Coverage Results" MODIFIED="1726513633849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
