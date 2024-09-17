@@ -2,213 +2,14 @@ import random
 import tkinter as tk
 from tkinter import messagebox, ttk
 from PIL import Image
+from diffusers import StableDiffusionPipeline
 import torch
-from torchvision import transforms as tfms
-from safetensors.torch import load_file
 
-import torch
-import torch.nn as nn
-
-class StableDiffusion(nn.Module):
-    def __init__(self, state_dict):
-        super(StableDiffusion, self).__init__()
-        # Define your actual model architecture here
-        self.time_embed_0 = nn.Linear(256, 512)
-        self.time_embed_0.weight = nn.Parameter(state_dict['time_embed_0.weight'])
-        self.time_embed_0.bias = nn.Parameter(state_dict['time_embed_0.bias'])
-        self.time_embed_2 = nn.Linear(512, 256)
-        self.time_enbed_2.weight = nn.Parameter(state_dict['time_embed_2.weight'])
-        self.time_embed_2.bias = nn.Parameter(state_dict['time_embed_2.bias'])
-        self.input_blocks_0_0 = nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1)
-        self.input_blocks_0_0.weight = nn.Parameter(state_dict['model.diffusion_model.input_blocks.0.0.weight'])
-        self.input_blocks_0_0.bias = nn.Parameter(state_dict['model.input_blocks.0.0.bias'])
-        self.input_blocks_1_0_in_layers_0 = nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1)
-        self.input_blocks_1_0_in_layers_0.weight = nn.Parameter(state_dict['model.diffusion_model.input_blocks.1.0.in_layers.0.weight'])
-        self.input_blocks_1_0_in_layers_0.bias = nn.Parameter(state_dict['model.diffusion_model.input_blocks.1.0.in_layers.0.bias'])
-        self.input_blocks_1_0_in_layers_2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)
-        self.input_blocks_1_0_in_layers_2.weight = nn.Parameter(state_dict['model.diffusion_model.input_blocks.1.0.in_layers.2.weight'])
-        self.input_blocks_1_0_in_layers_2.bias = nn.Parameter(state_dict['model.diffusion_model.input_blocks.1.0.in_layers.2.bias'])
-        self.input_blocks_1_0_emb_layers_1 = nn.Linear(256, 512)
-        self.input_blocks_1_0_emb_layers_1.weight = nn.Parameter(state_dict['model.diffusion_model.input_blocks.1.0.emb_layers.1.weight'])
-        self.input_blocks_1_0_emb_layers_1.bias = nn.Parameter(state_dict['model.diffusion_model.input_blocks.1.0.emb_layers.1.bias'])
-        self.input_blocks_1_0_out_layers_0 = nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1)
-        self.input_blocks_1_0_out_layers_0.weight = nn.Parameter(state_dict['model.diffusion_model.input_blocks.1.0.out_layers.0.weight'])
-        self.input_blocks_1_0_out_layers_0.bias = nn.Parameter(state_dict['model.diffusion_model.input_blocks.1.0.out_layers.0.bias'])
-        self.cond_stage_model_transformer_vision_model_encoder_layers_5_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_5_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_5_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_5_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_5_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_5_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_5_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_6_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_6_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_6_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_6_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_6_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_6_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_6_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_6_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_7_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_7_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_7_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_7_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_7_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_7_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_7_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_7_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_8_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_8_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_8_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_8_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_8_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_8_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_8_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_8_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_9_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_9_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_9_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_9_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_9_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_9_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_9_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_9_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_10_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_10_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_10_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_10_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_10_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_10_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_10_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_10_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_11_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_11_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_11_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_11_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_11_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_11_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_11_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_11_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_12_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_12_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_12_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_12_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_12_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_12_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_12_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_12_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_13_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_13_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_13_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_13_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_13_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_13_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_13_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_13_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_14_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_14_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_14_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_14_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_14_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_14_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_14_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_14_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_15_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_15_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_15_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_15_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_15_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_15_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_15_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_15_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_16_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_16_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_16_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_16_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_16_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_16_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_16_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_16_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_17_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_17_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_17_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_17_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_17_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_17_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_17_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_17_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_18_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_18_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_18_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_18_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_18_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_18_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_18_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_18_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_19_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_19_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_19_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_19_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_19_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_19_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_19_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_19_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_20_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_20_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_20_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_20_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_20_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_20_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_20_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_20_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_21_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_21_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_21_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_21_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_21_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_21_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_21_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_21_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_22_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_22_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_22_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_22_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_22_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_22_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_22_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_22_layer_norm2 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_23_self_attn_k_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_23_self_attn_v_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_23_self_attn_q_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_23_self_attn_out_proj = nn.Linear(512, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_23_layer_norm1 = nn.LayerNorm(512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_23_mlp_fc1 = nn.Linear(512, 2048)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_23_mlp_fc2 = nn.Linear(2048, 512)
-        self.cond_stage_model_transformer_vision_model_encoder_layers_23_layer_norm2 = nn.LayerNorm(512)
-
-
-
-    @staticmethod
-    def load_from_checkpoint(checkpoint_path):
-        try:
-            # Load the checkpoint and extract the state dictionary
-            checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu'))
-            state_dict = checkpoint['state_dict']
-            model = StableDiffusion()
-            model.load_state_dict(state_dict)
-            return model
-        except Exception as e:
-            print(f"Error loading model checkpoint: {e}")
-            return None
-
-    def generate(self, description):
-        # Generate an image based on the description
-        # This is a placeholder implementation
-        image = torch.zeros((3, 256, 256))  # Example: a blank image
-        return image
 
 class Character:
-    def __init__(self, name, race, char_class, strength, dexterity, constitution, intelligence, wisdom, charisma, starting_items, skills_with_damage, background, alignment, additional_equipment):
+    def __init__(self, name, race, char_class, strength, dexterity, constitution, intelligence, wisdom, charisma,
+                 starting_items, skills_with_damage, background, alignment, additional_equipment, age, gender, height,
+                 weight, eye_color, hair_color, skin_color, personality_traits, ideals, bonds, flaws):
         self.name = name
         self.race = race
         self.char_class = char_class
@@ -223,10 +24,23 @@ class Character:
         self.background = background
         self.alignment = alignment
         self.additional_equipment = additional_equipment
+        self.age = age
+        self.gender = gender
+        self.height = height
+        self.weight = weight
+        self.eye_color = eye_color
+        self.hair_color = hair_color
+        self.skin_color = skin_color
+        self.personality_traits = personality_traits
+        self.ideals = ideals
+        self.bonds = bonds
+        self.flaws = flaws
+
 
 def roll_stat():
     rolls = [random.randint(1, 6) for _ in range(4)]
     return sum(sorted(rolls)[1:])
+
 
 def generate_image(character):
     description = generate_character_description(character)
@@ -234,22 +48,26 @@ def generate_image(character):
     if image:
         image.save(f"{character.name}_character_image.png")
 
+
 def generate_character_description(character):
-    return f"Name: {character.name}\nRace: {character.race}\nClass: {character.char_class}\nBackground: {character.background}\nAlignment: {character.alignment}\nAdditional Equipment: {character.additional_equipment}"
+    return (f"Name: {character.name}, Race: {character.race}, Class: {character.char_class}, Background: {character.background}, "
+            f"Alignment: {character.alignment}, Additional Equipment: {character.additional_equipment}, Age: {character.age}, "
+            f"Gender: {character.gender}, Height: {character.height}, Weight: {character.weight}, Eye Color: {character.eye_color}, "
+            f"Hair Color: {character.hair_color}, Skin Color: {character.skin_color}, Personality Traits: {character.personality_traits}, "
+            f"Ideals: {character.ideals}, Bonds: {character.bonds}, Flaws: {character.flaws}")
+
 
 def generate_character_image(description):
-    # Load the model
-    model = StableDiffusion.load_from_checkpoint('StableDiffusion/stable-diffusion-webui/models/StableDiffusion/model.ckpt')
+    print(f"Generating image for description: {description}")  # Debug print
 
-    if model is None:
-        print("Failed to load the model.")
-        return None
+    model = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4")
+    model.to("cuda" if torch.cuda.is_available() else "cpu")
 
-    # Generate the image
     with torch.no_grad():
-        image = model.generate(description)
+        image = model(description).images[0]  # Get the first generated image
 
     return image
+
 
 def is_suitable(stats, char_class):
     preferred_stats = {
@@ -269,6 +87,7 @@ def is_suitable(stats, char_class):
     primary, secondary = preferred_stats[char_class]
     return stats[primary] >= 15 and stats[secondary] >= 13
 
+
 def roll_stats_for_class(char_class):
     while True:
         stats = {
@@ -281,6 +100,7 @@ def roll_stats_for_class(char_class):
         }
         if is_suitable(stats, char_class):
             return stats
+
 
 def get_starting_items_and_skills(char_class):
     items_and_skills = {
@@ -299,42 +119,99 @@ def get_starting_items_and_skills(char_class):
     }
     return items_and_skills[char_class]
 
+
 def create_character():
-    print("create_character function called")  # Debug statement
     name = name_entry.get()
     race = race_var.get()
     char_class = class_var.get()
     background = background_entry.get()
     alignment = alignment_var.get()
     additional_equipment = equipment_entry.get()
+    age = age_entry.get()
+    gender = gender_var.get()
+    height = height_entry.get()
+    weight = weight_entry.get()
+    eye_color = eye_color_entry.get()
+    hair_color = hair_color_entry.get()
+    skin_color = skin_color_entry.get()
+    personality_traits = personality_traits_entry.get()
+    ideals = ideals_entry.get()
+    bonds = bonds_entry.get()
+    flaws = flaws_entry.get()
 
-    print(f"Name: {name}, Race: {race}, Class: {char_class}, Background: {background}, Alignment: {alignment}, Additional Equipment: {additional_equipment}")  # Debug statement
-
-    if not name or not race or not char_class or not background or not alignment:
+    if not name or not race or not char_class or not background or not alignment or not age or not gender or not height or not weight or not eye_color or not hair_color or not personality_traits or not ideals or not bonds or not flaws or not skin_color:
         messagebox.showerror("Input Error", "Please fill in all fields")
         return
 
     stats = roll_stats_for_class(char_class)
     starting_items, skills_with_damage = get_starting_items_and_skills(char_class)
-    character = Character(name, race, char_class, stats["strength"], stats["dexterity"], stats["constitution"], stats["intelligence"], stats["wisdom"], stats["charisma"], starting_items, skills_with_damage, background, alignment, additional_equipment)
+    character = Character(name, race, char_class, stats["strength"], stats["dexterity"], stats["constitution"],
+                          stats["intelligence"], stats["wisdom"], stats["charisma"], starting_items, skills_with_damage,
+                          background, alignment, additional_equipment, age, gender, height, weight, eye_color, hair_color,
+                          skin_color, personality_traits, ideals, bonds, flaws)
     generate_image(character)
     messagebox.showinfo("Success", f"Character {name} created and saved to image")
+
 
 def generate_random_name():
     random_names = [
         "Aragorn", "Legolas", "Gimli", "Frodo", "Gandalf", "Boromir", "Samwise", "Pippin", "Merry", "Eowyn",
-        "Arwen", "Elrond", "Galadriel", "Thranduil", "Celeborn", "Glorfindel", "Eomer", "Theoden", "Faramir", "Denethor",
-        "Isildur", "Anarion", "Gil-galad", "Cirdan", "Radagast", "Saruman", "Sauron", "Shelob", "Gollum", "Smaug",
-        "Balin", "Dwalin", "Kili", "Fili", "Dori", "Nori", "Ori", "Oin", "Gloin", "Bifur",
-        "Bofur", "Bombur", "Thorin", "Bard", "Beorn", "Thranduil", "Tauriel", "Azog", "Bolg", "Dain",
-        "Thror", "Thrain", "Durin", "Dis", "Frerin", "Fundin", "Narvi", "Telchar", "Gundabad", "Khazad-dum",
-        "Moria", "Erebor", "Dale", "Laketown", "Rivendell", "Lothlorien", "Mirkwood", "Fangorn", "Isengard", "Minas Tirith",
-        "Minas Morgul", "Osgiliath", "Helm's Deep", "Edoras", "Dunharrow", "Pelennor Fields", "Mordor", "Barad-dur", "Mount Doom", "Cirith Ungol",
-        "Gondor", "Rohan", "Shire", "Bree", "Weathertop", "Amon Hen", "Amon Sul", "Emyn Muil", "Dead Marshes", "Black Gate",
-        "Grey Havens", "Valinor", "Numenor", "Anduin", "Misty Mountains", "Blue Mountains", "White Mountains", "Redhorn Pass", "Caradhras", "Mount Gundabad"
+        "Arwen", "Elrond", "Galadriel", "Thranduil", "Celeborn", "Glorfindel", "Eomer", "Theoden", "Faramir", "Denethor"
     ]
     name_entry.delete(0, tk.END)
     name_entry.insert(0, random.choice(random_names))
+
+
+def generate_random_character():
+    random_names = [
+        "Aragorn", "Legolas", "Gimli", "Frodo", "Gandalf", "Boromir", "Samwise", "Pippin", "Merry", "Eowyn",
+        "Arwen", "Elrond", "Galadriel", "Thranduil", "Celeborn", "Glorfindel", "Eomer", "Theoden", "Faramir", "Denethor"
+    ]
+    random_races = ["Human", "Elf", "Dwarf", "Halfling", "Dragonborn", "Gnome", "Half-Elf", "Half-Orc", "Tiefling"]
+    random_classes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer",
+                      "Warlock", "Wizard"]
+    random_alignments = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "True Neutral", "Chaotic Neutral",
+                         "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
+    random_genders = ["Male", "Female", "Non-binary", "Other"]
+
+    name_entry.delete(0, tk.END)
+    name_entry.insert(0, random.choice(random_names))
+    race_var.set(random.choice(random_races))
+    class_var.set(random.choice(random_classes))
+    background_entry.delete(0, tk.END)
+    background_entry.insert(0, "Random Background")
+    alignment_var.set(random.choice(random_alignments))
+    equipment_entry.delete(0, tk.END)
+    equipment_entry.insert(0, "Random Equipment")
+    age_entry.delete(0, tk.END)
+    age_entry.insert(0, random.randint(18, 100))
+    gender_var.set(random.choice(random_genders))
+    height_entry.delete(0, tk.END)
+    height_entry.insert(0, f"{random.randint(4, 7)}' {random.randint(0, 11)}\"")
+    weight_entry.delete(0, tk.END)
+    weight_entry.insert(0, random.randint(100, 300))
+    eye_color_entry.delete(0, tk.END)
+    eye_color_entry.insert(0, "Random Eye Color")
+    hair_color_entry.delete(0, tk.END)
+    hair_color_entry.insert(0, "Random Hair Color")
+    skin_color_entry.delete(0, tk.END)
+    skin_color_entry.insert(0, "Random Skin Color")
+
+    # Insert the new block here (around line 45 in your script):
+    random_personality_traits = ["Brave", "Cunning", "Honest", "Deceitful", "Impulsive", "Cautious"]
+    random_ideals = ["Justice", "Freedom", "Power", "Knowledge", "Wealth", "Glory"]
+    random_bonds = ["Family", "Honor", "Friends", "A mentor", "A former lover", "A sacred vow"]
+    random_flaws = ["Greedy", "Proud", "Hot-headed", "Cowardly", "Reckless", "Vindictive"]
+
+    personality_traits_entry.delete(0, tk.END)
+    personality_traits_entry.insert(0, random.choice(random_personality_traits))
+    ideals_entry.delete(0, tk.END)
+    ideals_entry.insert(0, random.choice(random_ideals))
+    bonds_entry.delete(0, tk.END)
+    bonds_entry.insert(0, random.choice(random_bonds))
+    flaws_entry.delete(0, tk.END)
+    flaws_entry.insert(0, random.choice(random_flaws))
+
 
 app = tk.Tk()
 app.title("DnD Character Maker")
@@ -352,18 +229,19 @@ race_menu.grid(row=1, column=1)
 
 tk.Label(app, text="Class:").grid(row=2, column=0)
 class_var = tk.StringVar()
-class_options = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]
+class_options = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer",
+                 "Warlock", "Wizard"]
 class_menu = ttk.Combobox(app, textvariable=class_var, values=class_options)
 class_menu.grid(row=2, column=1)
 
-# Add new fields for background, alignment, and additional equipment
 tk.Label(app, text="Background:").grid(row=3, column=0)
 background_entry = tk.Entry(app)
 background_entry.grid(row=3, column=1)
 
 tk.Label(app, text="Alignment:").grid(row=4, column=0)
 alignment_var = tk.StringVar()
-alignment_options = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "True Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
+alignment_options = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "True Neutral", "Chaotic Neutral",
+                     "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
 alignment_menu = ttk.Combobox(app, textvariable=alignment_var, values=alignment_options)
 alignment_menu.grid(row=4, column=1)
 
@@ -371,9 +249,56 @@ tk.Label(app, text="Additional Equipment:").grid(row=5, column=0)
 equipment_entry = tk.Entry(app)
 equipment_entry.grid(row=5, column=1)
 
-create_button = tk.Button(app, text="Create Character", command=create_character)
-create_button.grid(row=6, columnspan=2)
+tk.Label(app, text="Age:").grid(row=6, column=0)
+age_entry = tk.Entry(app)
+age_entry.grid(row=6, column=1)
 
-print(f"Button command: {create_button.cget('command')}")  # Debug statement
+tk.Label(app, text="Gender:").grid(row=7, column=0)
+gender_var = tk.StringVar()
+gender_options = ["Male", "Female", "Non-binary", "Other"]
+gender_menu = ttk.Combobox(app, textvariable=gender_var, values=gender_options)
+gender_menu.grid(row=7, column=1)
+
+tk.Label(app, text="Height:").grid(row=8, column=0)
+height_entry = tk.Entry(app)
+height_entry.grid(row=8, column=1)
+
+tk.Label(app, text="Weight:").grid(row=9, column=0)
+weight_entry = tk.Entry(app)
+weight_entry.grid(row=9, column=1)
+
+tk.Label(app, text="Eye Color:").grid(row=10, column=0)
+eye_color_entry = tk.Entry(app)
+eye_color_entry.grid(row=10, column=1)
+
+tk.Label(app, text="Hair Color:").grid(row=11, column=0)
+hair_color_entry = tk.Entry(app)
+hair_color_entry.grid(row=11, column=1)
+
+tk.Label(app, text="Skin Color:").grid(row=12, column=0)
+skin_color_entry = tk.Entry(app)
+skin_color_entry.grid(row=12, column=1)
+
+tk.Label(app, text="Personality Traits:").grid(row=13, column=0)
+personality_traits_entry = tk.Entry(app)
+personality_traits_entry.grid(row=13, column=1)
+
+tk.Label(app, text="Ideals:").grid(row=14, column=0)
+ideals_entry = tk.Entry(app)
+ideals_entry.grid(row=14, column=1)
+
+tk.Label(app, text="Bonds:").grid(row=15, column=0)
+bonds_entry = tk.Entry(app)
+bonds_entry.grid(row=15, column=1)
+
+tk.Label(app, text="Flaws:").grid(row=16, column=0)
+flaws_entry = tk.Entry(app)
+flaws_entry.grid(row=16, column=1)
+
+create_button = tk.Button(app, text="Create Character", command=create_character)
+create_button.grid(row=17, columnspan=2)
+
+random_character_button = tk.Button(app, text="Random Character", command=generate_random_character)
+random_character_button.grid(row=18, columnspan=2)
 
 app.mainloop()

@@ -113,8 +113,18 @@ def create_character():
     background = background_entry.get()
     alignment = alignment_var.get()
     additional_equipment = equipment_entry.get()
+    age = age_entry.get()
+    gender = gender_var.get()
+    height = height_entry.get()
+    weight = weight_entry.get()
+    eye_color = eye_color_entry.get()
+    hair_color = hair_color_entry.get()
+    personality = personality_entry.get()
+    bonds = bonds_entry.get()
+    flaws = flaws_entry.get()
+    skin_color = skin_color_entry.get()
 
-    if not name or not race or not char_class or not background or not alignment:
+    if not name or not race or not char_class or not background or not alignment or not age or not gender or not height or not weight or not eye_color or not hair_color or not personality or not bonds or not flaws or not skin_color:
         messagebox.showerror("Input Error", "Please fill in all fields")
         return
 
@@ -122,7 +132,7 @@ def create_character():
     starting_items, skills_with_damage = get_starting_items_and_skills(char_class)
     character = Character(name, race, char_class, stats["strength"], stats["dexterity"], stats["constitution"],
                           stats["intelligence"], stats["wisdom"], stats["charisma"], starting_items, skills_with_damage,
-                          background, alignment, additional_equipment)
+                          background, alignment, additional_equipment, age, gender, height, weight, eye_color, hair_color, personality, bonds, flaws)
     generate_image(character)
     messagebox.showinfo("Success", f"Character {name} created and saved to image")
 
@@ -150,30 +160,72 @@ race_options = ["Human", "Elf", "Dwarf", "Halfling", "Dragonborn", "Gnome", "Hal
 race_menu = ttk.Combobox(app, textvariable=race_var, values=race_options)
 race_menu.grid(row=1, column=1)
 
-tk.Label(app, text="Class:").grid(row=2, column=0)
+tk.Label(app, text="Skin Color").grid(row=1, column=1)
+skin_color_entry = tk.Entry(app)
+skin_color_entry.grid(row=1, column=1)
+
+tk.Label(app, text="Age:").grid(row=2, column=0)
+age_entry = tk.Entry(app)
+age_entry.grid(row=2, column=0)
+
+tk.Label(app, text="Gender:").grid(row=3, column=0)
+gender_var = tk.StringVar()
+gender_options = ["Male", "Female", "Non-binary"]
+gender_menu = ttk.Combobox(app, textvariable=gender_var, values=gender_options)
+gender_menu.grid(row=3, column=0)
+
+tk.Label(app, text="Height:").grid(row=4, column=0)
+height_entry = tk.Entry(app)
+height_entry.grid(row=4, column=0)
+
+tk.Label(app, text="Weight:").grid(row=5, column=0)
+weight_entry = tk.Entry(app)
+weight_entry.grid(row=5, column=0)
+
+tk.Label(app, text="Eye Color:").grid(row=6, column=0)
+eye_color_entry = tk.Entry(app)
+eye_color_entry.grid(row=6, column=0)
+
+tk.Label(app, text="Hair Color:").grid(row=7, column=0)
+hair_color_entry = tk.Entry(app)
+hair_color_entry.grid(row=7, column=0)
+
+tk.Label(app, text="Personality Traits:").grid(row=8, column=0)
+personality_entry = tk.Entry(app)
+personality_entry.grid(row=8, column=0)
+
+tk.Label(app, text="Bonds:").grid(row=9, column=0)
+bonds_entry = tk.Entry(app)
+bonds_entry.grid(row=9, column=0)
+
+tk.Label(app, text="Flaws:").grid(row=10, column=0)
+flaws_entry = tk.Entry(app)
+flaws_entry.grid(row=10, column=0)
+
+tk.Label(app, text="Class:").grid(row=11, column=0)
 class_var = tk.StringVar()
 class_options = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer",
                  "Warlock", "Wizard"]
 class_menu = ttk.Combobox(app, textvariable=class_var, values=class_options)
-class_menu.grid(row=2, column=1)
+class_menu.grid(row=11, column=1)
 
 # Add new fields for background, alignment, and additional equipment
-tk.Label(app, text="Background:").grid(row=3, column=0)
+tk.Label(app, text="Background:").grid(row=12, column=0)
 background_entry = tk.Entry(app)
-background_entry.grid(row=3, column=1)
+background_entry.grid(row=12, column=1)
 
-tk.Label(app, text="Alignment:").grid(row=4, column=0)
+tk.Label(app, text="Alignment:").grid(row=13, column=0)
 alignment_var = tk.StringVar()
 alignment_options = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "True Neutral", "Chaotic Neutral",
                      "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
 alignment_menu = ttk.Combobox(app, textvariable=alignment_var, values=alignment_options)
-alignment_menu.grid(row=4, column=1)
+alignment_menu.grid(row=13, column=1)
 
-tk.Label(app, text="Additional Equipment:").grid(row=5, column=0)
+tk.Label(app, text="Additional Equipment:").grid(row=14, column=0)
 equipment_entry = tk.Entry(app)
-equipment_entry.grid(row=5, column=1)
+equipment_entry.grid(row=14, column=1)
 
 create_button = tk.Button(app, text="Create Character", command=create_character)
-create_button.grid(row=6, columnspan=2)
+create_button.grid(row=15, columnspan=2)
 
 app.mainloop()
